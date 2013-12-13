@@ -40,7 +40,7 @@
 
 - (BOOL)callSuperForTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
    UITouch *touch = [touches anyObject];
-   CGPoint location = [touch locationInView:touch.view];
+   CGPoint location = [touch locationInView:touch.view.superview];
    
    self.touchBeganOverButton = nil;
    for (UIButton *button in self.buttons) {
