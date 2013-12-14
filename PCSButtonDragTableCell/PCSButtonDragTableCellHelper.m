@@ -23,6 +23,9 @@
 }
 
 - (void)trackButton:(UIButton *)button {
+   if (! button)
+      return;
+   
    //if ([button isDescendantOfView:self.contentView])
    //   return;
    
