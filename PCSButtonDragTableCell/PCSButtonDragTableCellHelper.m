@@ -8,7 +8,7 @@
 
 @interface PCSButtonDragTableCellHelper()
 
-@property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, strong) NSMutableSet *buttons;
 @property (nonatomic, weak) UIButton *touchBeganOverButton;
 
 @end
@@ -17,7 +17,7 @@
 
 - (id)init {
    if ((self = [super init])) {
-      self.buttons = [NSMutableArray array];
+      self.buttons = [NSMutableSet set];
    }
    return self;
 }
@@ -33,6 +33,10 @@
    [self.buttons addObject:button];
 }
 
+- (void)untrackButton:(UIButton *)button {
+   [self.buttons removeObject:button];
+}
+
 - (void)untrackAllButtons {
    [self.buttons removeAllObjects];
 }
@@ -43,10 +47,10 @@
 
 - (BOOL)callSuperForTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
    UITouch *touch = [touches anyObject];
-   CGPoint location = [touch locationInView:touch.view.superview];
    
    self.touchBeganOverButton = nil;
    for (UIButton *button in self.buttons) {
+      CGPoint location = [touch locationInView:button.superview];
       if (CGRectContainsPoint(button.frame, location)) {
          self.touchBeganOverButton = button;
          break;

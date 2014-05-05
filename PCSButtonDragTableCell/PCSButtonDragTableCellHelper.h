@@ -10,6 +10,7 @@
 @interface PCSButtonDragTableCellHelper : NSObject
 
 - (void)trackButton:(UIButton *)button;
+- (void)untrackButton:(UIButton *)button;
 - (void)untrackAllButtons;
 
 - (BOOL)callSuperForTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
